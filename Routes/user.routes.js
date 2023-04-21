@@ -7,6 +7,7 @@ const {
   getDashBoardData,
   updateProfile,
   getUser,
+  coinInitRoute,
 } = require('../Controllers/UserController/user.controller');
 const Authenticate = require('../Middlewares/Authentication');
 
@@ -15,6 +16,7 @@ const userRoute = require('express').Router();
 userRoute.get('/getData', Authenticate, getDashBoardData);
 userRoute.get('/getUser', Authenticate, getUser);
 userRoute.put('/fundAccount', Authenticate, fundAccount);
+userRoute.post('/coinbase', coinInitRoute);
 userRoute.put('/addWatchList', Authenticate, addWatchList);
 userRoute.put('/updateBank', Authenticate, updateBank);
 userRoute.put('/addWalletAddress', Authenticate, addWalletAddress);

@@ -3,6 +3,11 @@ const { Dashboard } = require('../../Models/dashboard.model');
 const _ = require('lodash');
 const { History } = require('../../Models/history.model');
 
+const { Client, resources } = require('coinbase-commerce-node');
+
+Client.init(String(process.env.COINBASE_API));
+const { Charge } = resources;
+
 const getUser = async (req, res) => {
   const doc = await User.findOne({ email: req.user.user.email });
 
@@ -246,6 +251,43 @@ const updateProfile = async (req, res) => {
     });
 };
 
+const coinInitRoute = async (req, res) => {
+  const { product } = req.body;
+  const email = req.user.user.email;
+
+  const userDB = await User.findOne({ email });
+
+  try {
+    const chargeData = {
+      name: product.name,
+      description: product.description,
+      pricing_type: 'fixed_price',
+      local_price: {
+        amount: product.price,
+        currency: product.currency,
+      },
+      metadata: {
+        id: userDB._id,
+        amount: Number(product.price),
+        crypto: product.price,
+        method: product.method,
+        status: 'created',
+        type: product.type,
+        fees: Number(product.price) * 0.01,
+        coin: product.coin,
+        redirect_url: product.redirect_url,
+        cancel_url: product.cancel_url,
+      },
+    };
+
+    const charge = await Charge.create(chargeData);
+
+    res.send(charge);
+  } catch (e) {
+    res.status(500).send({ error: e });
+  }
+};
+
 module.exports = {
   addWatchList,
   fundAccount,
@@ -255,4 +297,5 @@ module.exports = {
   getDashBoardData,
   updateProfile,
   getUser,
+  coinInitRoute,
 };

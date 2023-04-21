@@ -31,6 +31,7 @@
     "call-bind": "^1.0.2",
     "callsites": "^3.1.0",
     "chalk": "^4.1.2",
+    "coinbase-commerce-node": "^1.0.4",
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",
     "concat-map": "^0.0.1",
