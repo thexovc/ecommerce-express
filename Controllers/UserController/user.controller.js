@@ -253,11 +253,10 @@ const updateProfile = async (req, res) => {
 
 const coinInitRoute = async (req, res) => {
   const { product } = req.body;
-  const email = req.user.user.email;
-
-  const userDB = await User.findOne({ email });
 
   try {
+    const userDB = await User.findOne({ _id: product.id });
+
     const chargeData = {
       name: product.name,
       description: product.description,
