@@ -15,6 +15,16 @@ const getUser = async (req, res) => {
   res.send(doc);
 };
 
+const getAllUser = async (req, res) => {
+  const doc = await User.find();
+
+  if (!doc) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  res.send(doc);
+};
+
 const getHistory = async (req, res) => {
   const { email } = req.body;
   const doc = await History.find({ email });
@@ -180,4 +190,5 @@ module.exports = {
   getUser,
   changePassword,
   getHistory,
+  getAllUser,
 };

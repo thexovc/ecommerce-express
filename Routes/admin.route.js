@@ -6,6 +6,7 @@ const {
   updateProfile,
   changePassword,
   getHistory,
+  getAllUser,
 } = require('../Controllers/Admin/admin.controller');
 const isAdmin = require('../Middlewares/isAdmin');
 
@@ -24,6 +25,8 @@ adminRoute.post('/updateProfile', isAdmin, updateProfile);
 adminRoute.post('/changePassword', isAdmin, changePassword);
 
 adminRoute.get('/getHistory', isAdmin, getHistory);
+
+adminRoute.get('/getAllUser', isAdmin, getAllUser);
 
 module.exports = {
   adminRoute,
