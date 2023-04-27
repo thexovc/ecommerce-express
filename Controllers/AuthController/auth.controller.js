@@ -80,6 +80,7 @@ const Login = tryCatch(async (req, res) => {
   const token = createToken({
     email: userDB.email,
     id: userDB._id,
+    admin: userDB.admin,
   });
   res.cookie('jwt', token, {
     httpOnly: true,

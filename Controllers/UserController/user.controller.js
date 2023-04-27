@@ -178,7 +178,7 @@ const fundAccount = async (req, res) => {
 
       await doc.save();
 
-      res.send(UserDB);
+      res.send(updatedAmount);
     } else {
       res.status(400).send({ msg: 'User does not exist' });
     }

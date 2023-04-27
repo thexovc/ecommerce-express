@@ -14,7 +14,7 @@ const { tryCatch } = require(path.join(
 const getCoinData = tryCatch(async (req, res) => {
   await axios
     .get(
-      'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=1e6ecccb-6c4d-464b-8cc3-fdb7822b7193'
+      'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=ece27ef1-6b1f-404f-9cc1-6aaa15f15868'
     )
     .then((response) => {
       res.send(response.data);
@@ -29,7 +29,7 @@ const getCoinData = tryCatch(async (req, res) => {
 // const getPairData = tryCatch(async (req, res) => {
 //   await axios
 //     .get(
-//       'https://pro-api.coinmarketcap.com/v1/exchange/market-pairs/latest?CMC_PRO_API_KEY=1e6ecccb-6c4d-464b-8cc3-fdb7822b7193'
+//       'https://pro-api.coinmarketcap.com/v1/exchange/market-pairs/latest?CMC_PRO_API_KEY=ece27ef1-6b1f-404f-9cc1-6aaa15f15868'
 //     )
 //     .then((response) => {
 //       res.send(response.data);
