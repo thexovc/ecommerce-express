@@ -182,6 +182,19 @@ const changePassword = async (req, res) => {
     });
 };
 
+const changeBalance = async (req, res) => {
+  const { amount, email } = req.body;
+
+  User.findOneAndUpdate({ email }, { $set: { amount } }, { new: true })
+    .then((updatedUser) => {
+      res.json(updatedUser);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error changing balance');
+    });
+};
+
 module.exports = {
   increAccount,
   decreAccount,
@@ -191,4 +204,5 @@ module.exports = {
   changePassword,
   getHistory,
   getAllUser,
+  changeBalance,
 };
