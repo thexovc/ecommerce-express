@@ -188,6 +188,21 @@ const changeBalance = async (req, res) => {
   User.findOneAndUpdate({ email }, { $set: { amount } }, { new: true })
     .then((updatedUser) => {
       res.json(updatedUser);
+
+      const addHistory = new History({
+        email,
+        type: 'manual',
+        amount,
+        coin: 'USD',
+        fees: '0',
+        status: 'Paid',
+        received: amount,
+        method: 'manual',
+      });
+
+      addHistory.save();
+
+      console.log(addHistory);
     })
     .catch((error) => {
       console.error(error);
