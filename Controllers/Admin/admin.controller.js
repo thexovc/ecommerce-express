@@ -69,13 +69,13 @@ const increAccount = async (req, res) => {
 
       const addHistory = new History({
         email,
-        type: 'manual',
+        type: 'deposit',
         amount,
         coin: 'USD',
         fees: '0',
         status: 'Paid',
         received: amount,
-        method: 'manual',
+        method: 'admin',
       });
 
       addHistory.save();
@@ -113,13 +113,13 @@ const decreAccount = async (req, res) => {
 
       const addHistory = new History({
         email,
-        type: 'manul',
+        type: 'withdrawal',
         amount,
         coin: 'USD',
         fees: '0',
         status: 'Paid',
         received: amount,
-        method: 'manual',
+        method: 'admin',
       });
 
       addHistory.save();
@@ -197,7 +197,7 @@ const changeBalance = async (req, res) => {
         fees: '0',
         status: 'Paid',
         received: amount,
-        method: 'manual',
+        method: 'admin',
       });
 
       addHistory.save();

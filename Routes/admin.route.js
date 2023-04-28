@@ -17,7 +17,7 @@ adminRoute.post('/decrease', isAdmin, decreAccount);
 
 adminRoute.post('/increase', isAdmin, increAccount);
 
-adminRoute.get('/getUser', isAdmin, getUser);
+adminRoute.post('/getUser', isAdmin, getUser);
 
 adminRoute.get('/getDashBoardData', isAdmin, getDashBoardData);
 
@@ -27,7 +27,7 @@ adminRoute.post('/changePassword', isAdmin, changePassword);
 
 adminRoute.post('/changeBalance', isAdmin, changeBalance);
 
-adminRoute.get('/getHistory', isAdmin, getHistory);
+adminRoute.post('/getHistory', isAdmin, getHistory);
 
 adminRoute.get('/getAllUser', isAdmin, getAllUser);
 
