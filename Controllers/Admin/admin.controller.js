@@ -3,7 +3,6 @@ const { Dashboard } = require('../../Models/dashboard.model');
 const _ = require('lodash');
 const { History } = require('../../Models/history.model');
 const bcrypt = require('bcrypt');
-const { history } = require('globalthis/implementation');
 
 const getUser = async (req, res) => {
   const { email } = req.body;
