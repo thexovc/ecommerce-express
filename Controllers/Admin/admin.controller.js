@@ -3,6 +3,7 @@ const { Dashboard } = require('../../Models/dashboard.model');
 const _ = require('lodash');
 const { History } = require('../../Models/history.model');
 const bcrypt = require('bcrypt');
+const { history } = require('globalthis/implementation');
 
 const getUser = async (req, res) => {
   const { email } = req.body;
@@ -69,7 +70,7 @@ const increAccount = async (req, res) => {
 
       const addHistory = new History({
         email,
-        type: 'deposit',
+        type: 'Deposit',
         amount,
         coin: 'USD',
         fees: '0',
@@ -113,7 +114,7 @@ const decreAccount = async (req, res) => {
 
       const addHistory = new History({
         email,
-        type: 'withdrawal',
+        type: 'Withdrawal',
         amount,
         coin: 'USD',
         fees: '0',
@@ -210,6 +211,31 @@ const changeBalance = async (req, res) => {
     });
 };
 
+const deleteUser = async (req, res) => {
+  const { amount, email } = req.body;
+
+  try {
+    const UserDB = await User.findOne({ email });
+
+    if (UserDB) {
+      const doc = await User.deleteOne({ email });
+
+      const history = await History.deleteMany({ email });
+
+      const dash = await Dashboard.findOne({ email });
+
+      res.send(doc);
+    } else {
+      res.status(400).send({ msg: 'User does not exist' });
+    }
+
+    //   res.send(201);
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
+};
+
 module.exports = {
   increAccount,
   decreAccount,
@@ -220,4 +246,5 @@ module.exports = {
   getHistory,
   getAllUser,
   changeBalance,
+  deleteUser,
 };

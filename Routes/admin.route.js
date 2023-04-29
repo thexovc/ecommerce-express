@@ -8,6 +8,7 @@ const {
   getHistory,
   getAllUser,
   changeBalance,
+  deleteUser,
 } = require('../Controllers/Admin/admin.controller');
 const isAdmin = require('../Middlewares/isAdmin');
 
@@ -30,6 +31,8 @@ adminRoute.post('/changeBalance', isAdmin, changeBalance);
 adminRoute.post('/getHistory', isAdmin, getHistory);
 
 adminRoute.get('/getAllUser', isAdmin, getAllUser);
+
+adminRoute.post('/deleteUser', isAdmin, deleteUser);
 
 module.exports = {
   adminRoute,
