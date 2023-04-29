@@ -287,6 +287,17 @@ const coinInitRoute = async (req, res) => {
   }
 };
 
+const getHistory = async (req, res) => {
+  const { email } = req.body;
+  const doc = await History.find({ email });
+
+  if (!doc) {
+    return res.status(404).json({ message: 'History not found' });
+  }
+
+  res.send(doc);
+};
+
 module.exports = {
   addWatchList,
   fundAccount,
@@ -297,4 +308,5 @@ module.exports = {
   updateProfile,
   getUser,
   coinInitRoute,
+  getHistory,
 };
